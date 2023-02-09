@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>前台主页</title>
+		<script src="/js/jquery-3.6.0.js"></script>
+		<script src="/js/util.js"></script>
+	</head>
+	<body>
+
+
+		Click <a th:href="@{/client/login}">here</a>还没登录? 去登录吧
+
+
+		<a href="/logout">退出登录</a>
+
+		<p id="text">
+
+
+
+
+		<script>
+
+			var token=window.localStorage.getItem("Authentication");
+			$(document).ready(function () {
+				$.ajax({
+					url: '/getUserInfo',
+					type: 'GET',
+					headers: {
+						'Authentication': token
+					},
+					success: function (data) {
+						// $('#text').text(jsonToString(data.data));
+						$('#text').text(jsonToString(data));
+
+					}
+				});
+			});
+
+		</script>
+	</body>
+</html>

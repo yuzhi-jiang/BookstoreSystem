@@ -1,0 +1,46 @@
+server:
+  port: 7070
+
+mybatis-plus:
+  mapper-locations: classpath:/com/example/BookstoreSystem/client/mapper/mappers/*.xml
+  type-aliases-package: com.example.BookstoreSystem.client.entity
+
+
+spring:
+  redis:
+    host: yefengzhijia.xyz
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 50
+        max-wait: 3000
+        max-idle: 20
+        min-idle: 2
+    timeout: 5000
+    password: youpassword
+  datasource:
+    url: jdbc:mysql://yefengzhijia.xyz:3306/ssm?serverTimezone=UTC
+    username: root
+    password: jiangshao888!  #jiangshao888 本机  jiangshao888! 服务器
+    driverClassName: com.mysql.cj.jdbc.Driver
+  aop:
+    proxy-target-class: true #开启注释
+#  spring.aop.proxy-target- class = true
+
+custom:
+  jwt:
+    secret: 7h4alejfloriaj5&asf!a4m   # 密钥。随便写
+    expire: 86400    # token有效时间，30分钟。单位：秒
+    refresh-expire: 2   # 刷新token有效时间，2天。单位：秒
+
+#  redis:
+#    host: localhost
+#    port: 6379
+#    jedis:
+#      pool:
+#        max-idle: 8
+#        min-idle: 0
+#        max-active: 8
+#        max-wait: -1
+#    timeout: 2000

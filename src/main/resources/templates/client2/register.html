@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册界面</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
+        <div class="register">
+            <h3>立即注册</h3>
+            <p >邮箱</p>
+            <p><input type="text" id="email"></p>
+            <p >用户名</p>
+            <p><input type="text" placeholder="用户名长度不能超过5位" id="username"></p>
+            <p> 性别</p>
+            <p >
+                <span>男</span>
+                <span><input style="width: auto;" type="radio" name="sex" value="男" id="sex_man"></span>
+                <span>女</span>
+                <span><input style="width: auto;" type="radio" name="sex" value="女" id="sex_woman"></span>
+                
+            </p>
+            <p >头像</p>
+            <p><input type="file" id="img"></p>
+            <p >密码</p>
+            <p><input type="password" placeholder="密码长度至少为6位，且为数字和字母的组合" id="password1"></p>
+            <p >确认密码</p>
+            <p><input type="password" placeholder="两次密码需一致" id="password2"></p>
+            <p><input type="button" class="register_button"  name="register" onclick="register_click()" value="注册"></input></p>
+            <!--<p><button class="register_button" onclick="" name="register" onclick="register_click()">注册</button></p>-->
+        </div>
+        <div class="d">
+            <br><br>
+            <h3 class="title">已有账号？</h3>
+            <p style="color: white;">已有账号就登录吧，好久不见！</p>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <p><button class="login_button" onclick="login_click()">登录</button></p>
+        </div>
+        <script>
+            var flag1=true;  //邮箱判断标识符
+            var flag2=true;  //用户名判断标识符
+            var flag3=true;  //密码判断标识符
+ 
+            //判断邮箱格式是否正确
+            email.onchange=function(){
+                var email=this.value;
+                var emailPattern=/^[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}$/;  //邮箱正则表达式
+                if(!(emailPattern.test(email)) ){
+                    alert("邮箱格式不对！");
+                    flag1=false;
+                }
+                else{
+                    flag1=true;
+                }
+                
+            }
+ 
+            //判断用户名格式是否正确
+            username.onchange=function(){
+                var username=this.value;
+                var usernamePattern = /^\S{1,5}$/;  //用户名正则表达式
+                if(!usernamePattern.test(username) ){
+                    alert("用户名格式不对，不能超过五个字符！")
+                    flag2=false;
+                }
+                else{
+                    flag2=true;
+                }
+                
+            }
+ 
+            //判断密码格式是否正确
+            password1.onchange=function(){
+                var password1=this.value;
+                var passwordPattern =  /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;  //密码正则表达式
+                if(!passwordPattern.test(password1)){
+                    alert("密码格式不对，长度至少为6位，且为数字和字母的组合");
+                    flag3=false;
+                }
+                else{
+                    flag3=true;
+                }
+                
+            }
+            //获取性别值
+            function justify_sex(){
+                var sex;
+                if(document.getElementById("sex_man").checked){
+                    sex=document.getElementById("sex_man").value;
+                }
+                else if(document.getElementById("sex_woman").checked){
+                    sex=document.getElementById("sex_woman").value;
+                }
+                return sex;
+            }
+            //注册函数
+            function register_click(){
+                
+                var username=document.getElementById("username").value;
+                var password1=document.getElementById("password1").value;
+                var password2=document.getElementById("password2").value;
+                var email=document.getElementById("email").value;
+                var sex=justify_sex();
+                
+                //localStory存储注册信息
+                localStorage.setItem("username",username);
+                localStorage.setItem("password",password1);
+                localStorage.setItem("sex",sex);
+                localStorage.setItem("email",email);
+                
+                //判断是否注册成功
+                if (flag1 && flag2 && flag3 && password1!=''){
+                    if(password1==password2){
+                    alert("注册成功！");
+                    window.location.href="reg.html";
+                    }
+                    else{
+                        alert("两次输入的密码不一样！");
+                    }
+                }
+                else{
+                    alert("信息格式不对，请输入正确的信息！")
+                }
+            }
+            //登录函数
+            function login_click(){
+                window.location.href="reg.html";
+            }
+        </script>
+        
+
+</body>
+</html>

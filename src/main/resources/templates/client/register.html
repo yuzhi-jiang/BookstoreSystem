@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册界面</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@next"/>
+
+    <script src="../js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+
+    <style>
+        .errorText {
+            font-size: xx-small;
+            text-align: left;
+            color: red;
+            display: block;
+        }
+
+        .img {
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sign-up-form" id="register">
+
+    <h1>注册界面</h1>
+
+    <!-- <form action="#" method="post"> -->
+    <table class="biao">
+        <tr>
+            <td>用户名 :</td>
+            <td><input type="text" v-model="username" class="input-box" id="userName"
+                       placeholder="用户名" @blur="checkUserName()" @change="userstatus=-1" required>
+                <span class="errorText" v-if="userstatus==0">{{userMsg}}</span>
+            </td>
+            <td><img src="/img/icon/fin.png" v-if="userstatus==1" class="img"></td>
+        </tr>
+        <tr>
+            <td>密码 :</td>
+            <td><input type="password" v-model="password" class="input-box" id="password1" placeholder=" 密码"
+                       required></td>
+        </tr>
+        <tr>
+            <td>确认密码 :</td>
+            <td><input type="password" v-model="confirmPassword" class="input-box" id="confirmPassword"
+                       placeholder="确认密码 " required></td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td><input type="radio" name="gender" id="nan" checked="checked" value=1>
+                <label for="nan">男</label>
+                <input type="radio" name="gender" id="nv" value=0>
+                <label for="nv">女</label>
+            </td>
+        </tr>
+        <tr>
+            <td>联系方式 :</td>
+            <td><input type="text" v-model="contaction" class="input-box" id="contact" placeholder="手机号"
+                       @change="phonestatus=-1"
+                       @blur="checkPhone()"
+            >
+                <span class="errorText" v-if="phonestatus==0">{{phoneMsg}}</span>
+            </td>
+            <td><img src="/img/icon/fin.png" v-if="phonestatus==1" class="img"></td>
+
+        </tr>
+        <tr>
+            <td>email :</td>
+            <td><input type="text" v-model="eil" class="input-box" id="email" placeholder="邮箱"
+                       @change="mailstatus=-1"
+                       @keyup.enter="register1()"
+                       @blur="checkEmail()" required
+            >
+                <span class="errorText" v-if="mailstatus==0">{{mailMsg}}</span>
+            </td>
+            <td><img src="/img/icon/fin.png" v-if="mailstatus==1" class="img"></td>
+        </tr>
+
+    </table>
+
+    <button class="zhuce" @click="register1()">注册</button>
+    <!-- </form> -->
+    <p style="font-weight: 400;">已经注册？<a href="./login" target="_blank">立即登录</a>
+
+</div>
+<script type="text/javascript" src="../js/register.js"></script>
+<script src="/js/util.js"></script>
+<script>
+    const register = {
+        data() {
+            return {
+                username: '',
+                password: '',
+                confirmPassword: '',
+                contaction: '',
+                gender: 1,
+                eil: '',
+                userstatus: -1,
+                userMsg: '',
+                phonestatus: -1,
+                phoneMsg: '',
+                mailstatus: -1,
+                mailMsg: '',
+                statusIcon: '/img/icon/fin.png'
+            }
+        },
+        methods: {
+            checkUserName() {
+                var that = this;
+               checkUsername(this.username, function (data) {
+                    // that.userstatus=data.errCode;
+                    console.log(data);
+                    that.userMsg = data.errMsg;
+                    if (data.errCode != 1) {
+                        that.userstatus = 0;
+                        return false;
+                    }
+                    checkUserEXIT(that.username, function (data) {
+                        console.log(data)
+                        // if (data.errCode != 1) {
+                        //     that.userstatus = 0;
+                        //     return
+                        // }
+                        that.userstatus = data.errCode;
+                        that.userMsg = data.errMsg;
+                    })
+
+                });
+
+                // if (!status) return
+                // if (this.userstatus==1)return;
+                // checkUserEXIT(this.username, function (data) {
+                //     console.log(data)
+                //     if (data.errCode != 1) {
+                //         that.userstatus = 0;
+                //         return
+                //     }
+                //     that.userstatus = 1
+                //     that.userMsg = data.errMsg;
+                // })
+            },
+
+            checkEmail() {
+                var that = this;
+              checkEmail(this.eil, function (data) {
+                    console.log(data);
+                    that.mailMsg = data.errMsg;
+                    if (data.errCode !== 1) {
+                        that.mailstatus = 0;
+                        return false;
+                    }
+
+                    checkEmailEXIT(that.eil, function (data) {
+                        console.log(data)
+                        that.mailMsg = data.errMsg;
+                        that.mailstatus = data.errCode;
+                    })
+
+                });
+                // if (!status) return
+                // if (this.mailstatus== 1) {
+                //     return
+                // }
+
+                // checkEmailEXIT(this.eil, function (data) {
+                //     console.log(data)
+                //     if (data.errCode != 1) {
+                //         that.mailstatus = 0;
+                //         return
+                //     }
+                //     that.mailstatus = 1;
+                //     that.mailMsg = data.errMsg;
+                // })
+            },
+
+            checkPhone() {
+                var that = this;
+                checkPhone(this.contaction, function (data) {
+                    console.log(data);
+
+                    if (data.errCode !== 1) {
+                        that.phonestatus = 0;
+                        that.phoneMsg = data.errMsg;
+                        return false;
+                    }
+                    checkPhoneEXIT(that.contaction, function (data) {
+                        console.log(data)
+                        // if (data.errCode != 1) {
+                        //     that.phonestatus = 0;
+                        //     return
+                        // }
+
+                        that.phonestatus = data.errCode;
+                        that.phoneMsg = data.errMsg;
+                    })
+
+
+                });
+
+            },
+            register1() {
+                var username = this.username;
+                var password = this.password;
+                var confirmPassword = this.confirmPassword;
+                var phone = this.contaction;
+                var email = this.eil;
+                var gender = $('input:radio:checked').val()// $("input[name='gender'][checked]").val();
+                registerUserCheck(username, password, confirmPassword, email, phone, function (res) {
+                    console.log(res)
+                    if (res.errCode === 0) {
+                        alert(res.errMsg);
+                    }
+
+                });
+                console.log(status)
+                console.log(gender)
+                console.log(this.userstatus)
+                console.log(this.phonestatus)
+                console.log(this.mailstatus)
+                if (this.userstatus != 1 || this.phonestatus != 1 || this.mailstatus != 1) {
+                    return
+                }
+                UserRegister(username, password, Number.parseInt(gender), phone, email, function (data) {
+                    msg = data.errMsg;
+                    mdata = msg;
+                    // alert(mdata);
+                    if (data.errCode === 277) {
+                        alert("注册成功前往登录吧");
+                        window.location.href = "login";
+                    } else {
+                        alert(mdata);
+                    }
+                })
+                // $.ajax(
+                //     {
+                //         type: "post",
+                //         url: '/registerUser',
+                //         dataType: "jsonp",
+                //         contentType: "application/json",
+                //         data: JSON.stringify({
+                //             name: username,
+                //             password: password,
+                //             gender: gender,
+                //             phone: phone,
+                //             mail: email
+                //         }),
+                //         dataType: "json",
+                //         success(data) {
+                //             msg = data.errMsg;
+                //             mdata = msg;
+                //             // alert(mdata);
+                //             if (data.errCode == 277) {
+                //                 alert("注册成功前往登录吧");
+                //                 window.location.href = "/client/login";
+                //             }else {
+                //                 alert(mdata);
+                //             }
+                //         },
+                //         error(data) {
+                //             alert("注册失败,网络异常请检测网络或是否以json格式提交");
+                //         }
+                //     }
+                // )
+            }
+        }
+    }
+
+
+    Vue.createApp(register).mount('#register') // 绑定在id为register的标签
+    $(document).ready(function () {
+
+
+        // $("#userName").onfocus(function (){
+        //     alert("asd1f")
+        // });
+        // $("#userName").blur(function (){
+        //     alert("asdf")
+        // });
+        // $("#contact").blur(function () {
+        //     register.methods.checkPhone();
+        // });
+        // $("#email").blur(function () {
+        //     register.methods.checkEmail();
+        // });
+    });
+
+</script>
+
+</body>
+
+</html>

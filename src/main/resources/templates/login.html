@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+
+<!--<form action="/userLogin" method="post">-->
+   用户名 ：<input type="text" name="username" value=""> <br>
+    密码：<input type="password" name="password" value=""> <br>
+<button>向页面发送 HTTP POST 请求，并获得返回的结果</button>
+<!--    <input type="button" value="登录" >-->
+<!--    <input type="reset" value="重置">-->
+
+<!--</form>-->
+
+
+
+<script>
+    $(document).ready(function(){
+
+        $("button").click(function(){
+
+
+
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+
+            // username 必须是大小写字符,数字的组合,字符在8-10位之间
+
+
+
+
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "/userLogin",
+                data: {
+                    username:username,
+                    password:password
+                },
+                contentType:"application/json;charset=utf-8",
+                // dataType: "jsonp",
+                success: function (data) {
+                    alert(data.errMsg);
+                    if (data.errCode === 200) {
+                        window.location.href = "/index";
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("请求数据异常：" + errorThrown);
+                }
+            });
+
+            // $.post("http://127.0.0.1:8080/userLogin",
+            //     {
+            //         username:"yeffeng1",
+            //         password:"Duckburg"
+            //     },
+            //     function success(data) {
+            //         alert(data )
+            //
+            //
+            //     },
+            //     "jsonp"
+            // )
+
+
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

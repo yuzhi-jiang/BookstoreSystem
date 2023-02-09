@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>手机号登录</title>
+		<link type="text/css" rel="stylesheet" href="../css/phone_login.css" charset="UTF-8">
+			
+	</head>
+	<body>
+		<div class="box">
+			<div>
+				<img src="./img/logo/logo.png" / class="logo">
+				<p style="text-align: center; margin-top: 20px; font-size: 20px;">手机号登录
+			</div>
+
+			<div class="input-body">
+				<div class="Phone">
+					<label for="phone">
+						<span style="color: red;">*</span>
+						手机号码:
+					</label>
+					<input id="phone" placeholder="请输入手机号码"></br>
+				</div>
+
+				<div class="VerificationCode">
+					<label for=verificationcode">
+						<span style="color: red;">*</span>
+						验证码:
+					</label>
+					<input id="verificationcode" class="verificationCode" placeholder="请输入验证码">
+					<button>获取验证码</button></br>					
+					</div>
+
+				<button type="submit" class="Loginbutton" onclick="return phoneLoginCheck()">登录</button></br>
+
+				<!-- 跳转注册界面 -->
+				<p class="a_reg">还没有注册？<a href="./register" target="_blank">立即注册</a>
+
+				<!-- 忘记密码界面 -->
+				<p class="b_reg"><a href="./forget" target="_blank">忘记密码？</a>
+
+
+			</div>
+
+
+
+			<script type="text/javascript" src="./js/phone_login.js"></script>
+	</body>
+</html>

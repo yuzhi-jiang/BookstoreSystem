@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0%;
+    font-family: sans-serif;
+    background-image: url(images/bg2.jpg);
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-weight: 700;
+    
+}
+
+.sign-up-form {
+    width: 420px;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0 a0.3);
+    /* background: rgba(0,0,0,0.3);这个是背景图片才可以半透明的 */
+    background: #fff;
+    padding: 20px;
+    margin: 4% auto 0;
+    text-align: center;
+    opacity: 0.7;
+    /*背景透明度*/
+
+    background-image: url("./images/shulin.png");
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+
+.sign-up-form h1 {
+    color: black;
+    margin-bottom: 30px;
+
+}
+
+.input-box {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 90%;
+    border: 1px solid #999;
+    outline: none;
+    opacity:0.9;
+}
+
+button {
+    color: #fff;
+    width: 50%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.signup-btn {
+    background-color: #1c8adb;
+
+}
+
+.signphone-btn {
+    background-color: #21afde;
+}
+
+a {
+    text-decoration: none;
+}
+
+.biao {
+    margin-left: 30px;
+}
+
+.zhuce {
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+	color: #000000;
+    margin-top: 10px;
+}
+
+/* .tupian {
+    display: inline;
+    width: 80px;
+    height: 80px;
+    margin: 50px 50px 0 0;
+
+}
+
+h1 {
+    display: inline-block;
+    margin:auto;
+    margin-top: -30px;
+    font-family: "华文行楷";
+} */

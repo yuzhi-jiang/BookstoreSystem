@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>忘记密码</title>
+
+	<link rel="stylesheet" href="/static/css/forget.css">
+	<style>
+
+		#codeBox {
+			display: inline-block;
+			width: 80px;
+			height: 20px;
+			line-height: 20px;
+			margin-top: 40px;
+			margin-left: 10px;
+			background-color: aqua;
+			border: 1px solid #AAA;
+			text-align: center;
+			font-size: 18px;
+			letter-spacing: 5px;
+		}
+
+		#link {
+			display: inline-block;
+			text-decoration: none;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div>
+				<img src="/static/img/logo/logo.png" alt="找回密码" class="logo"/>
+				<p style="text-align: center; margin-top: 20px; font-size: 20px;">找回密码
+			</div>
+			<div class="input-body">
+				<div class="mobile-phone">
+					<label for="mobilePhone">
+						<span style="color: red;">*</span>
+						手机号码:
+					</label>
+					<input id="mobilePhone" placeholder="请输入手机号码"><br>
+				</div>
+				<div class="VerificationCode">
+					<label for="GraphicVerificationCode">
+						<span style="color: red;">*</span>
+						图验证码:
+					</label>
+					<input id="GraphicVerificationCode" placeholder="请输入图验证码"><br>
+				</div>
+
+				<!-- 阻止点击a标签的默认行为 -->
+				<div id="codeBox">
+					Ab4F
+				</div>
+				<a href="javascript:" id="link">看不清楚，换一张</a><br>
+
+				<div class="password1">
+					<label for="Password1">
+						<span style="color: red;">*</span>
+						设置密码:
+					</label>
+					<input type="password" id="Password1" placeholder="请设置新密码"><br>
+				</div>
+
+				<div class="password2">
+					<label for="Password2">
+						<span style="color: red;">*</span>
+						确认密码:
+					</label>
+					<input type="password" id="Password2" placeholder="请确认新密码"><br>
+				</div>		
+					
+				<button type="submit" class="accessbutton" onclick="return forgetCheck()">确认</button>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/static/js/forget.js"></script>
+	</body>
+</html>

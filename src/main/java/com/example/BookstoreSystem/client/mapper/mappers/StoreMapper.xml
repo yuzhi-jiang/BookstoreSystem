@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.BookstoreSystem.client.mapper.StoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.BookstoreSystem.client.entity.Store">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="company" property="company" />
+        <result column="register_id" property="registerId" />
+        <result column="legal_penson" property="legalPenson" />
+        <result column="license_location" property="licenseLocation" />
+        <result column="register_capital" property="registerCapital" />
+        <result column="term_validity" property="termValidity" />
+        <result column="nature" property="nature" />
+        <result column="website" property="website" />
+        <result column="license_pic" property="licensePic" />
+        <result column="store_add" property="storeAdd" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+    </resultMap>
+
+</mapper>

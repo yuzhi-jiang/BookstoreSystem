@@ -1,0 +1,118 @@
+* {
+    /* 初始化 */
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    /* 导航栏顶部 */
+    height: 60px;
+    
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.user {
+    /* 用户名信息栏 */
+    display: inline-block;
+    width: 400px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 3px;
+    margin-left: 20px;
+
+}
+
+.nav .user span {
+    /* 文字居中 */
+    line-height: 40px;
+    margin-left: 25px;
+}
+
+.nav .user .sn1 {
+    margin-left: 65px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.tuichu a {
+    margin-left: 16px;
+
+}
+
+.geren {
+    margin-left: 730px;
+}
+
+.dindan {
+    margin-left: 20px;
+}
+/*  以上是导航栏的 导航栏部分结束   */
+
+.box-left , .box-right {
+    float: left;
+}
+.box-left {
+    width: 320px;
+    height: 678px;
+    text-align: center;
+}
+.box-left img {
+    width: 320px;
+    height: 120px;
+    background-repeat: no-repeat;
+}
+.box-right {
+    width: 1180px;
+    height: 678px;
+}
+ul li {
+    /* display: block; */
+    font-size: 20px;
+    margin-top: 12px;
+}
+.b , .c{
+    margin-top: 24px;
+}
+/*  左边的li标签结束了  */
+.box-right .nav-up{
+    height: 60px;
+}
+.box-right .nav-up h4{
+    display: inline-block;
+    font-size: 30px;
+    margin-left: 20px;
+    line-height: 60px;
+}
+.box-right .nav-up input{
+    margin-left: 40px;
+    width: 200px;
+    height: 28px;
+    
+}
+.box-right .nav-up button {
+    height: 32px;
+    width: 50px;
+}
+.btn {
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+h3 {
+    margin-top: 20px;
+    margin-left: 16px;
+}
+.imgs {
+    width: 1180px;
+    height: 400px;
+    background-color: pink;
+    
+    text-align: center;
+    line-height: 400px;
+    margin-top: 30px;
+}

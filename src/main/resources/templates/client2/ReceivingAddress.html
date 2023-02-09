@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/shulin.ico" media="screen" />
+    <title>收货地址</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url(./images/bg2.jpg);
+            background-repeat: no-repeat;
+
+        }
+
+        .header {
+            height: 100px;
+            line-height: 100px;
+
+        }
+
+        .header h1 {
+            display: inline-block;
+            margin-left: 100px;
+        }
+
+        .header>button {
+            margin-left: 500px;
+            width: 100px;
+            height: 30px;
+        }
+
+        .box {
+            width: 620px;
+            margin: 80px auto;
+        }
+        table tr td{
+            padding: 16px;
+        }
+        span{
+            color: red;
+        }
+        select {
+            margin-left: 10px;
+        }
+        button {
+            width: 80px;
+            height: 30px;
+        }
+        input {
+            border-radius: 3px;
+            width: 220px;
+            height: 28px;
+        }
+        input,textarea,select {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>收货地址</h1>
+        <button>退出</button>
+    </div>
+    <hr>
+    <div class="box">
+        <form action="" method="post">
+            <table>
+                <tr>
+                    <td><span>*</span>收货人: </td>
+                    <td><input type="text" name="userName" id="userName"></td>
+                </tr>
+                <tr>
+                    <td><span>*</span>手机号: </td>
+                    <td><input type="number" name="phone" id="phone"></td>
+                </tr>
+                <tr>
+                    <td><span>*</span>收货地址: </td>
+                    <td><select name="address1" id="address1">
+                            <option value="">北京</option>
+                            <option value="">广州</option>
+                            <option value="">上海</option>
+                            <option value="">佛山</option>
+                        </select>
+                        <select name="address2" id="address2">
+                            <option value="">北京市</option>
+                            <option value="">广州市</option>
+                            <option value="">上海市</option>
+                            <option value="">佛山市</option>
+                        </select>
+                        <select name="address3" id="address3">
+                            <option value="">东城区</option>
+                            <option value="">天河区</option>
+                            <option value="">浦东</option>
+                            <option value="">南海区</option>
+                        </select>
+                        <select name="address4" id="address4">
+                            <option value="">东华门街道</option>
+                            <option value="">黄埔大道中</option>
+                            <option value="">世纪公园</option>
+                            <option value="">狮山大学城</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>*</span>详细地址: </td>
+                    <td><textarea name="" id="" cols="30" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <td>邮编: </td>
+                    <td><input type="text" name="youbian" id="youbian"></td>
+                </tr>
+                <tr>
+                    <td><button>确定</button></td>
+                    <td><button>取消</button></td>
+                </tr>
+            </table>
+
+
+
+            
+            
+
+        </form>
+    </div>
+
+
+
+
+
+    <div class="footer"></div>
+</body>
+
+</html>

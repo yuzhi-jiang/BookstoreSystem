@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+
+    <link rel="stylesheet" href="../css/loginInterface.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script src="../js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+
+    <div class="sign-up-form" id="login">
+
+        <h1>书林</h1>
+        <!-- 输入用户名 -->
+        <!-- required  必填  |  autofocus="autofocus"  //开始时获得光标--->
+        <input type="text" v-model="username" class="input-box" placeholder=" 用户名" name="username" id="userName"
+            required>
+
+
+        <!-- 输入密码 -->
+        <input type="password" v-model="password" class="input-box" placeholder=" 密码" name="password" id="password"
+            autocomplete="on" required>
+
+
+        
+
+        <!-- autocomplete="on" 不会记录用户的输入记录 -->
+
+
+        <div class="xuanze">
+            <span>登录身份:</span>
+            <select name="loginRole">
+                <option selected value="ROLE_USER">用户</option>
+                <option value="ROLE_SELLER">商家</option>
+                <option value="ROLE_ADMIN">管理员</option>
+            </select>
+        </div>
+
+        <span><input type="checkbox" id="a">我同意接受注册条款</span>
+
+        <!-- 提交表单元素，登录 -->
+        <button class="signup-btn" @click="login1()">登录</button>
+
+
+        <!-- 手机号登录 -->
+        <a href="phone_login">
+            <button type="button" class="signphone-btn">手机号登录</button>
+        </a>
+        <!-- 跳转注册界面 -->
+        <p class="tiao">还没有注册？<a href="./register" target="_blank">立即注册</a>
+
+            <!-- 忘记密码界面 -->
+        <p class="tiao"><a href="./forget" target="_blank">忘记密码？</a>
+    </div>
+
+    <!--<script type="text/javascript" src="../js/login.js"></script>-->
+    <script type="text/javascript" src="util.js"></script>
+    <script>
+        const login = {
+            data() {
+                return {
+                    username: '',
+                    password: '',
+                    loginROLE: 'ROLE_USER'
+                }
+            },
+            methods: {
+                login1() {
+
+                    var username = this.username;
+                    var password = this.password;
+                    var loginrole = $("select[name='loginRole']").val();
+
+                    console.log("username:" + loginrole);
+                    var checkstatus = false;
+
+                    if (!document.getElementById("a").checked) {
+                        alert("请勾选注册条款！");
+                        return false
+                    }
+
+                    loginCheck(username, password, function (data) {
+                        if (data.errCode == 0) {
+                            alert(data.errMsg)
+                        } else {
+
+                            userlogin(username, password, loginrole, function (data) {
+                                console.log(data)
+                                console.log(data.errMsg)
+                                console.log(data.errCode)
+
+                                if (data.errCode === 200) {
+                                    console.log(data.data.token)
+                                    //session  sessionStorage.setItem("token",data.data.token); //存储数据
+                                    // window.localStorage.setItem("Authentication",data.data.token);
+                                    //
+                                    //   // console.log(token)
+                                    $.ajaxSetup({
+                                        beforeSend: function (xhr) {
+                                            //可以设置自定义标头
+                                            xhr.setRequestHeader('Authentication', data.data.token);
+                                        }
+                                    });
+
+                                    window.location.href = 'Reception_index';
+                                }
+                            }
+                            );
+                            // $.ajax({
+                            //     type: "post",
+                            //     async: false,
+                            //     url: "/userLogin",
+                            //     data: jsonToString(
+                            //         {
+                            //             username:username,
+                            //             password:password,
+                            //             loginRole:loginrole,
+                            //         }
+                            //     ),
+                            //     contentType: "application/json",
+                            //     dataType: "json",
+                            //     success: function (data) {
+                            //         console.log(data)
+                            //         console.log(data.errMsg)
+                            //         console.log(data.errCode)
+                            //
+                            //         if (data.errCode == 200) {
+                            //             console.log(data.data.token)
+                            //           //session  sessionStorage.setItem("token",data.data.token); //存储数据
+                            //           // window.localStorage.setItem("Authentication",data.data.token);
+                            //           //
+                            //           //   // console.log(token)
+                            //             $.ajaxSetup({
+                            //                 beforeSend: function (xhr) {
+                            //                     //可以设置自定义标头
+                            //                     xhr.setRequestHeader('Authentication', data.data.token);
+                            //                 }
+                            //             });
+                            //
+                            //             window.location.href = 'Reception_index';
+                            //         } else {
+                            //             alert(data.errMsg)
+                            //         }
+                            //     },
+                            //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //         alert("请求数据异常：" + errorThrown);
+                            //     }
+                            // });
+                        }
+                    }
+                    )
+
+                    // var userstatus = checkUsername(username);
+                    // var pwdstatus = checkPassword(password);
+                    //
+                    // if(!userstatus){
+                    //     alert("用户名不合法,账号应字母开头，允许5-16字节，允许字母数字下划线");
+                    //     return;
+                    // }
+                    // if(!pwdstatus){
+                    //     alert("密码不合法,密码必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-15之间");
+                    //     return;
+                    // }
+
+                    // var status = logincheck(username, password);
+                    // if (!status) {
+                    //     return
+                    // }
+
+
+                    // $.post("/userLogin", {
+                    //         username: username,
+                    //         password: password
+                    //
+                    //     },
+                    //     function (data) {
+                    //         console.log(data)
+                    //         console.log(data.errMsg)
+                    //         console.log(data.errCode)
+                    //
+                    //         if (data.errCode == 200) {
+                    //             window.location.href = 'Reception_index';
+                    //
+                    //         } else {
+                    //             alert(data.errMsg)
+                    //         }
+                    //     }
+                    // );
+                }
+            }
+        }
+
+        Vue.createApp(login).mount('#login') // 绑定在id为app的标签
+    </script>
+</body>
+
+</html>

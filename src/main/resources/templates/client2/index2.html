@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<!-- 使用vue需引入以下 两个-->
+		
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="/js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/util.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.6.0.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			验证码为:<img :src="vcodeurl">
+			<button @click="get()">更新验证码</button>
+			<p style="color: red;">实现数据绑定
+				<input type="text" name="text" id="text" v-model="mydata" />
+			
+			<br />
+				<p style="color: red;">实现双向绑定
+				你输入的是：
+				<textarea rows="2" cols="10">{{mydata}}</textarea>
+
+			<button @click="check()">校验</button>
+		</div>
+		
+		<script>
+
+			const app={
+				data(){
+					return{
+						vcodeurl:"/api/VCodeImg.jpg",
+						mydata:''
+					}
+				},
+				methods:{
+					get(){
+						this.vcodeurl=getBase64VCode();
+					},
+					check(){
+						checkVCode(this.mydata);
+
+					}
+				}
+				// template : "<div>{{a}}+b</div>"     // 插值表达式
+			}
+		
+			Vue.createApp(app).mount('#app')
+		</script>
+	</body>
+</html>

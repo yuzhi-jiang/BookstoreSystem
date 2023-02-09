@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.BookstoreSystem.client.mapper.AdministerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.BookstoreSystem.client.entity.Administer">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="adtype_id" property="adtypeId"/>
+        <result column="describe" property="describe"/>
+    </resultMap>
+
+    <!-- 查询所有管理员 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM administer where id=#{id}
+    </select>
+
+    <!--    getAdvertiseListByPage-->
+    <select id="getAdvertiseListByPage" resultMap="BaseResultMap">
+        SELECT * from administer where status=#{status}
+        limit #{start},#{size}
+        <if test="sortKey != null and sortValue != null">
+            order by ${sortKey} ${sortValue}
+        </if>
+        <if test="searchKey != null and searchKey != '' ">
+            and name like '%${searchKey}%'
+        </if>
+    </select>
+</mapper>

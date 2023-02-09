@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.BookstoreSystem.client.mapper.AdvertiseMapper">
+
+
+    <select id="getAdvertise" resultType="com.example.BookstoreSystem.client.model.Advertise">
+        SELECT * FROM advertise WHERE id = #{id}
+    </select>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.BookstoreSystem.client.entity.Advertise">
+        <id column="id" property="id" />
+        <result column="typeid" property="typeid" />
+        <result column="sizex" property="sizex" />
+        <result column="sizey" property="sizey" />
+        <result column="link" property="link" />
+        <result column="picpath" property="picpath" />
+        <result column="time" property="time" />
+        <result column="status" property="status" />
+    </resultMap>
+
+</mapper>

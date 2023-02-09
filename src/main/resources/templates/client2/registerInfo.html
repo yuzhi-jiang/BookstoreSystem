@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册界面</title>
+    <link href="../css/registerinfo.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/shulin.ico" media="screen" />
+    <script type="text/javascript" src="../js/registerInfo.js"></script>
+</head>
+
+<body>
+    <div class="sign-up-form">
+        <!-- <img src="./img/shulin.png" class=""> -->
+        <h1>注册界面</h1>
+
+        <form action="" method="post">
+            <table class="biao">
+                <tr>
+                    <td>用户名 :</td>
+                    <td><input type="text" class="input-box" id="userName" placeholder="用户名" autofocus="autofocus"
+                            required></td>
+                </tr>
+                <tr>
+                    <td>密码 :</td>
+                    <td><input type="password" class="input-box" id="password1" placeholder=" 密码" required></td>
+                </tr>
+                <tr>
+                    <td>确认密码 :</td>
+                    <td><input type="password" class="input-box" id="password2" placeholder="确认密码 " required></td>
+
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td><input type="radio" name="sex" id="nan" checked="checked">
+                        <label for="nan">男</label>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="sex" id="nv">
+                        <label for="nv">女</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>联系方式 :</td>
+                    <td><input type="text" class="input-box" id="contact" placeholder="手机号" required
+                            pattern="^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$"></td>
+
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td><input type="text" class="input-box" id="Email" placeholder="邮箱" required
+                            pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"></td>
+                </tr>
+
+            </table>
+
+            <input type="submit" class="zhuce" placeholder="" onclick="check()">
+
+            <p style="font-weight: 400;">已经注册？<a href="./登录界面.html" target="_blank">立即登录</a></p>
+
+        </form>
+    </div>
+</body>
+
+</html>

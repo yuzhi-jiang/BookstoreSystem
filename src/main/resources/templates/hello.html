@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <script src="/js/util.js"></script>
+</head>
+<body>
+<h1>Welcome!sdf</h1>
+
+
+<div>
+    <a href="login">Login</a>
+    <a href="logout">Logout</a>
+
+
+
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/getUserInfo',
+            type: 'GET',
+            success: function (data) {
+                $('#text').text(jsonToString(data.data));
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
